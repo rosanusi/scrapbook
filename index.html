@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Project Scrapbooks</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ta-Da Daily Tasklist">
+    <link rel="stylesheet" href="css/main.css">
+
+  </head>
+
+  <body>
+    <header class="mainHeader">
+      <div class="container">
+        <a class="logo" href="#"><object type="image/svg+xml" data="img/scrapbook.svg"></object></a>
+        <div class="right">
+          <a class="mainBtn headerLink createLink">&plus; New Project</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="startSection" id="startSection">
+        <h3>Hey, you've got no project!</h3>
+        <p>Don't you have that project idea, post, notes you want to put down? You know you do. Pick one of those ideas and create a project for it.</p>
+      </div>
+
+      <div class="projectForm form hide">
+        <div class="projectForm-inner">
+          <form class="newProjectForm">
+            <input type="text" name="projectName" class="titleInput" placeholder="Project Title"/>
+            <textarea name="projectBrief" class="briefInput" maxlength="140" placeholder="Write something about your project" rows="10"></textarea>
+            <button type="submit" class="btn mainBtn newprojectBtn">Create project</button>
+          </form>
+        </div>
+      </div
+    </div>
+
+    <ul class="container projectList hide">
+      <li class="projectCard hide">
+        <div class="cardTop">
+          <span class="projectTitle">Title of the project</span>
+          <span class="projectBrief">Brief about the project we are working on. Enjoy the show and spin out.</span>
+        </div>
+        <div class="cardFoot">
+          <span class="update">Updated 3 days ago</span>
+          <div class="dropdown">
+            <span class="dropdownIcon">
+              <svg width="13px" height="3px" viewBox="0 0 13 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Group-Management" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Group-Listing-wih-Dropdwon" transform="translate(-557.000000, -550.000000)" fill="#C9CCD5">
+                          <path d="M558.5,553 C557.671573,553 557,552.328427 557,551.5 C557,550.671573 557.671573,550 558.5,550 C559.328427,550 560,550.671573 560,551.5 C560,552.328427 559.328427,553 558.5,553 Z M563.5,553 C562.671573,553 562,552.328427 562,551.5 C562,550.671573 562.671573,550 563.5,550 C564.328427,550 565,550.671573 565,551.5 C565,552.328427 564.328427,553 563.5,553 Z M568.5,553 C567.671573,553 567,552.328427 567,551.5 C567,550.671573 567.671573,550 568.5,550 C569.328427,550 570,550.671573 570,551.5 C570,552.328427 569.328427,553 568.5,553 Z" id="Combined-Shape"></path>
+                      </g>
+                  </g>
+              </svg>
+            </span>
+            <div class="dropdown-content">
+              <!-- <div class="actions editAction">Edit project</div> -->
+              <!-- <div class="actions archiveAction">Archive Project</div> -->
+              <div class="actions deleteAction">Delete project</div>
+            </div>
+          </div>
+
+
+        </div>
+      </li>
+    </ul>
+
+    <div id="contentContainer" class="contentContainer">
+
+      <div class="header">
+        <h4 class="contentTitle"></h4>
+        <small class="contentBrief hide"></small>
+      </div>
+
+      <textarea class="projectContent container" id="projectContent" placeholder="start dumping your thoughts here..."></textarea>
+    </div>
+  </body>
+
+
+  <script src="js/moment.js"></script>
+  <script src="js/main.js"></script>
+
+
+</html>

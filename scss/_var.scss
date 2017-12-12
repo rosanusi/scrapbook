@@ -1,0 +1,94 @@
+/* Colours */
+$primaryColor: #1FB5FC;
+$lightColor: #808080;
+$borderColor: #ccc;
+$headerColor: #252525;
+$bodyColor: #A4AAB8;
+$lighterBodyColor: lighten($bodyColor, 15%);
+$bkgrndColor: #181D23;
+$successColor: #28A947;
+$errorColor: #ED332D;
+$linkColor: #F26954;
+
+
+
+
+
+	/* Declaring system font as font-face */
+	@font-face {
+	  font-family: system;
+	  font-style: normal;
+	  font-weight: 300;
+	  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Transition Mixin */
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+
+/* opacity Mixin */
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/* Vertical Align Mixin */
+@mixin vertical-align($position: relative) {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+/* Unit Size conversion to em */
+
+$browser-context: 16; // Default
+
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
+
+
+/* General */
+
+@mixin border-radius($radius: 2px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
