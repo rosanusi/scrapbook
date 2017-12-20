@@ -400,3 +400,43 @@ button {
 .hide {
   display: none !important;
 }
+
+
+
+/* Rich text editor customize CSS */
+
+.CodeMirror-wrap {
+   @include outer-container(700px);
+   margin-top: rem(32);
+   background: $bkgrndColor;
+   border: none;
+   color: $bodyColor;
+   font-family: 'Spectral', serif;
+   font-weight: 300;
+   font-size: rem(19);
+   line-height: 1.5;
+}
+
+   span.CodeMirror-selectedtext {
+    background: lighten($bkgrndColor, 10%);
+    color: #fff;
+   }
+
+   /*.CodeMirror-focused .CodeMirror-selected, .CodeMirror-line::selection, .CodeMirror-line>span::selection, .CodeMirror-line>span>span::selection {
+     background: lighten($bkgrndColor, 10%);
+     color: $bodyColor;
+   }*/
+
+
+   div.CodeMirror-cursors {
+   }
+
+   .CodeMirror-cursor {
+     border-left: 1px solid $bodyColor;
+   }
+
+   /*Spell Check */
+   .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
+     background: none;
+     border-bottom: 1px dotted rgba(255,0,0,.55);
+   }

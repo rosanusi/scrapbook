@@ -1,10 +1,21 @@
 // project Array
 var storedProjectList;
+var mde;
 
 function main() {
+
+	mde = new SimpleMDE({
+		element: projectContent,
+		autofocus: true,
+		status: false,
+		// toolbar: true,
+		toolbarTips: true,
+		toolbar: ["bold", "italic", "heading", "|", "quote"],
+		// initialValue: project.projectContent
+	});
+
 	if (load()) {
 		displayProjectList();
-		// autoSave();
 	}
 	else {
 		storedProjectList = [];
@@ -152,29 +163,49 @@ function openProjectContent(e, project, projectCard, dropdownTrigger) {
 	const projectContent = contentContainer.querySelector('.projectContent');
 
 	// click tester
-	projectContent.addEventListener("keydown", e => saveProjectContent(project, projectCard, contentContainer));
+	// projectContent.addEventListener("keydown", e => saveProjectContent(project, projectCard, contentContainer));
+	mde.codemirror.on("change", e => saveProjectContent(project));
+
+
+
 
 	contentContainer.classList.add('opened');
 
 	contentTitle.innerText = project.projectTitle;
 	contentBrief.innerText = project.projectBrief;
 
+
+
+	// var mde = new SimpleMDE({
+	// 	element: projectContent,
+	// 	status: false,
+	// 	toolbar: false,
+	// 	initialValue: project.projectContent
+	// });
+	// console.log({mde,mde2});
+
 	if (project.projectContent == undefined)
 		return;
 
-	projectContent.innerText = project.projectContent;
+	mde.value(project.projectContent);
+
+	// projectContent.innerText = project.projectContent;
 	// console.log(project.projectContent);
+
 }
 
 function saveProjectContent(project) {
 
-	projectContent.innerText = projectContent.value;
-	project.projectContent = projectContent.value;
+	// projectContent.innerText = projectContent.value;
+	//var value = mde.value();
+
+	project.projectContent = mde.value();
 
 	// var debounce = null;
 	// clearTimeout(debounce);
   // debounce = setTimeout(function(){
-		save();
+	save();
+	console.log(project.projectContent);
 
 		// console.log('shit we are saving bitchesssss')
   // }, 10000);
