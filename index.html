@@ -15,26 +15,29 @@
   </head>
 
   <body>
-    <header class="mainHeader">
+    <header class="mainHeader hide">
       <div class="container">
-        <a class="logo" href="#"><object type="image/svg+xml" data="img/scrapbook.svg"></object></a>
+        <a class="logo" href="#"><object type="image/svg+xml" data="img/scrapnote.svg"></object></a>
         <div class="right">
-          <a class="mainBtn headerLink createLink">&plus; New Project</a>
+          <a class="mainBtn headerLink">&plus; New Project</a>
         </div>
       </div>
     </header>
 
-    <div class="container">
-      <div class="startSection" id="startSection">
-        <h3>Hey, you've got no project!</h3>
-        <p>Don't you have that project idea, post, notes you want to put down? You know you do. Pick one of those ideas and create a project for it.</p>
+    <div class="startSection"  id="startSection">
+      <div class="startSection-content">
+        <small>Scrapnote.</small>
+        <h1>Keep notes<br /> for every project.</h1>
+        <a href="#" class="createLink mainBtn">Create a Project</a>
       </div>
+    </div>
 
+    <div class="container">
       <div class="projectForm form hide">
         <div class="projectForm-inner">
           <form class="newProjectForm">
             <input type="text" name="projectName" class="titleInput" placeholder="Project Title"/>
-            <textarea name="projectBrief" class="briefInput" maxlength="140" placeholder="Write something about your project" rows="10"></textarea>
+            <textarea name="projectBrief" class="briefInput" maxlength="140" placeholder="Write something about your project" rows="5"></textarea>
             <button type="submit" class="btn mainBtn newprojectBtn">Create project</button>
           </form>
         </div>
@@ -60,8 +63,8 @@
               </svg>
             </span>
             <div class="dropdown-content">
-              <!-- <div class="actions editAction">Edit project</div> -->
-              <!-- <div class="actions archiveAction">Archive Project</div> -->
+              <div class="actions editAction">Edit project</div>
+              <div class="actions archiveAction">Archive Project</div>
               <div class="actions deleteAction">Delete project</div>
             </div>
           </div>
@@ -73,9 +76,10 @@
 
     <div id="contentContainer" class="contentContainer">
 
-      <div class="header">
+      <div class="header container">
         <h4 class="contentTitle"></h4>
         <small class="contentBrief hide"></small>
+        <small class="dateCreated"></small>
       </div>
 
       <textarea class="projectContent container" name="projectContent" id="projectContent"></textarea>

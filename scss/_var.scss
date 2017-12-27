@@ -1,14 +1,12 @@
 /* Colours */
-$primaryColor: #1FB5FC;
-$lightColor: #808080;
-$borderColor: #ccc;
-$headerColor: #252525;
-$bodyColor: #A4AAB8;
+$borderColor: #F6EFE9;
+$headerColor: #6F645D;
+$bodyColor: #6f645D;
 $lighterBodyColor: lighten($bodyColor, 15%);
-$bkgrndColor: #181D23;
+$bkgrndColor: #F6F6F6;
 $successColor: #28A947;
 $errorColor: #ED332D;
-$linkColor: #F26954;
+$linkColor: #F0644A;
 
 
 
@@ -21,20 +19,6 @@ $linkColor: #F26954;
 	  font-weight: 300;
 	  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -6,11 +6,11 @@ function main() {
 
 	mde = new SimpleMDE({
 		element: projectContent,
-		autofocus: true,
+		autofocus: false,
 		status: false,
-		// toolbar: true,
-		toolbarTips: true,
-		toolbar: ["bold", "italic", "heading", "|", "quote"],
+		toolbar: false,
+		// toolbarTips: true,
+		// toolbar: ["bold", "italic", "heading", "|", "quote"],
 		// initialValue: project.projectContent
 	});
 
@@ -35,19 +35,18 @@ function load() {
 		return true;
 }
 
-function displayProjectForm() {
+function displayProjectForm(projectsContainer) {
+	event.preventDefault();
   const projectForm = document.querySelector('.projectForm');
 	const startSection = document.querySelector('.startSection');
   projectForm.classList.remove('hide');
-  projectForm.classList.add('display');
-  startSection.classList.add('hide');
-	const projectsContainer = document.querySelector('.projectList');
+	startSection.classList.add('hide');
+	// const projectsContainer = document.querySelector('.projectList');
 	// projectsContainer.classList.add('hide');
 }
 
 function hideProjectForm() {
   const projectForm = document.querySelector('.projectForm');
-  projectForm.classList.remove('display');
   projectForm.classList.add('hide');
 }
 
@@ -56,14 +55,13 @@ function addNewProject() {
   const titleInput = document.querySelector('.titleInput');
   const briefInput = document.querySelector('.briefInput');
   const createdDate = moment().valueOf();
-	// const createdDateFormatted =
   briefInput.innerText = briefInput.value;
 
-  storedProjectList.unshift({
-    projectTitle : titleInput.value,
-    projectBrief : briefInput.value,
-    dateCreated: createdDate
-  });
+		storedProjectList.unshift({
+	    projectTitle : titleInput.value,
+	    projectBrief : briefInput.value,
+	    dateCreated: createdDate
+	  });
 
   save();
 
@@ -76,13 +74,14 @@ function addNewProject() {
 }
 
 function displayProjectList() {
-  const startSection = document.querySelector('.startSection');
+  const mainHeader = document.querySelector('.mainHeader');
+	const startSection = document.querySelector('.startSection');
   const projectsContainer = document.querySelector('.projectList');
   const cardTemplate = projectsContainer.querySelector('.projectCard');
   projectsContainer.classList.remove('hide');
   if (typeof storedProjectList !== 'undefined' && storedProjectList.length > 0) {
 		startSection.classList.add('hide');
-		startSection.classList.remove	('display');
+		mainHeader.classList.remove('hide');
     projectsContainer.innerHTML = '';
 
     storedProjectList.forEach(function(project, i) {
@@ -96,11 +95,11 @@ function displayProjectList() {
       const timeUpdate = projectCard.querySelector('.update');
 
 			// Time Formate for cards
-			const currentTime = moment(project.dateCreated).fromNow();
+			const createdTime = moment(project.dateCreated).fromNow();
 
       projectTitle.innerText = project.projectTitle;
       projectBrief.innerText = project.projectBrief;
-			timeUpdate.innerText = currentTime;
+			timeUpdate.innerText = createdTime;
 
 
       // trigger "more" for each project
@@ -118,8 +117,8 @@ function displayProjectList() {
 
     });
   } else {
+		mainHeader.classList.add('hide');
     startSection.classList.remove('hide');
-    startSection.classList.add('display');
 		projectsContainer.classList.add('hide');
   }
 }
@@ -151,8 +150,7 @@ function closeMoreOptions(e) {
 
 }
 
-function openProjectContent(e, project, projectCard, dropdownTrigger) {
-
+function openProjectContent(e, project, projectsContainer, projectCard, dropdownTrigger) {
 	if (e.target.closest('.dropdown') != null)
 		return;
 
@@ -160,29 +158,20 @@ function openProjectContent(e, project, projectCard, dropdownTrigger) {
 	// projectCard.appendChild(contentContainer);
 	const contentTitle = contentContainer.querySelector('.contentTitle');
 	const contentBrief = contentContainer.querySelector('.contentBrief');
+	const projectDateCreated = contentContainer.querySelector('.dateCreated');
+	const createdTime = moment(project.dateCreated).fromNow();
 	const projectContent = contentContainer.querySelector('.projectContent');
 
 	// click tester
 	// projectContent.addEventListener("keydown", e => saveProjectContent(project, projectCard, contentContainer));
 	mde.codemirror.on("change", e => saveProjectContent(project));
 
-
-
-
 	contentContainer.classList.add('opened');
 
 	contentTitle.innerText = project.projectTitle;
 	contentBrief.innerText = project.projectBrief;
+	projectDateCreated.innerText = 'created ' + ' ' + createdTime;
 
-
-
-	// var mde = new SimpleMDE({
-	// 	element: projectContent,
-	// 	status: false,
-	// 	toolbar: false,
-	// 	initialValue: project.projectContent
-	// });
-	// console.log({mde,mde2});
 
 	if (project.projectContent == undefined)
 		return;
@@ -212,12 +201,21 @@ function saveProjectContent(project) {
 
 }
 
-main();
+
+document.addEventListener("DOMContentLoaded", function(){
+  // Handler when the DOM is fully loaded
+	main();
+});
+
 
 
 // Call the form from start page
 const createLink = document.querySelector('.createLink');
 createLink.addEventListener("click", e => displayProjectForm());
+
+// Call the form from the header page
+const headerLink = document.querySelector('.headerLink');
+headerLink.addEventListener("click", e => displayProjectForm());
 
 // Get input from the form field
 const newprojectBtn = document.querySelector('.newprojectBtn');

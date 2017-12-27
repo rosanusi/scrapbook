@@ -2,8 +2,7 @@
 @import "neat/neat";
 @import "reset";
 @import "var";
-@import url('https://fonts.googleapis.com/css?family=Spectral:300,300i,400,600');
-
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
 
 
 // .container {
@@ -44,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 	line-height: 1.25;
 	margin-bottom: rem(16);
-	color: $bodyColor;
+	color: $headerColor;
 }
 
 h1 {
@@ -85,17 +84,19 @@ a {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: darken($bodyColor, 25%);
+  color: lighten($bodyColor, 25%);
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: darken($bodyColor, 25%);
+  color: lighten($bodyColor, 25%);
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: darken($bodyColor, 25%);
+  color: lighten($bodyColor, 25%);
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: darken($bodyColor, 25%);
+  color: lighten($bodyColor, 25%);
 }
+
+
 
 /* The main Content CSS */
 
@@ -105,14 +106,24 @@ a {
 
 .startSection {
   max-width: rem(600);
-  text-align: center;
-  margin: 0 auto;
-  padding: rem(160) rem(24);
-  /*@include vertical-align();*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  h1 {
+    margin-bottom: rem(8);
+    font-size: rem(56);
+    line-height: 1.25;
+  }
+
+  p {
+    font-size: rem(18);
+  }
 
   a {
-    margin-top: rem(16);
-
+    display: inline-block;
+    margin-top: rem(20);
   }
 }
 
@@ -126,10 +137,14 @@ form {
     border: none;
     background: transparent;
     font-size: rem(16);
-    border-bottom: 1px solid lighten($bkgrndColor, 5%);
+    border-bottom: 1px solid $borderColor;
     padding: rem(12) 0;
-    margin-bottom: rem(12);
     color: $bodyColor;
+    padding-top: 0;
+
+    &[name="projectName"] {
+      font-weight: 600;
+    }
 
     &:focus, &:hover {
       outline: none;
@@ -162,13 +177,23 @@ button {
 }
 
 .mainBtn {
-  background-color: $linkColor;
-  color: #fff;
+  display: inline-block;
+  line-height: 1;
+  font-size: rem(14);
+  color: $linkColor;
+  border-bottom: 0;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: rem(8) rem(12);
+  background-color: lighten($linkColor, 33%);
 
   &:hover {
-    background-color: darken($linkColor, 10%);
+    color: darken($linkColor, 10%);
   }
 }
+
+
 
 /*.secBtn {
   border: 1px solid $linkColor;
@@ -177,7 +202,7 @@ button {
 
 
 .mainHeader {
-  border-bottom: 1px solid lighten($bkgrndColor, 5%);
+  border-bottom: 1px solid $borderColor;
   padding: rem(24) 0;
 
   .logo {
@@ -190,43 +215,27 @@ button {
   .right {
     float: right;
     width: auto;
-
-    .createLink {
-      display: inline-block;
-      line-height: 1;
-      /*padding: rem(8) rem(12);*/
-      font-size: rem(16);
-      color: $linkColor;
-      background: none;
-      /*background-color: lighten($linkColor, 30%);*/
-      border-bottom: 0;
-      font-weight: 500;
-      cursor: pointer;
-
-      &:hover {
-        color: lighten($linkColor, 10%);
-      }
-    }
   }
 }
 
 .projectForm {
   position: fixed;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   right: 0;
   top: 0;
-  height: 100%;
-  background-color: rgba(24, 29, 35, .9);
+  background-color: $bkgrndColor;
   z-index: 1000;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .projectForm-inner {
-    max-width: rem(480);
+    width: rem(480);
     position: relative;
-    background-color: lighten($bkgrndColor, 10%);
-    padding: rem(24);
-    margin: 0 auto;
-    margin-top: rem(160);
+    background-color: white;
+    padding: 1.5rem;
     border-radius: 4px;
   }
 }
@@ -256,9 +265,9 @@ button {
 
     .projectTitle {
       display: block;
-      font-size: rem(16);
+      font-size: rem(14);
+      font-weight: 600;
       color: $linkColor;
-      margin-bottom: rem(4);
     }
 
     .projectBrief {
@@ -310,21 +319,23 @@ button {
   .dropdown-content {
     position: absolute;
     display: none;
-    background-color: lighten($bkgrndColor, 10%);
-    box-shadow: 1px 1px 8px #222;
+    background-color: #fff;
+    border: 1px solid $borderColor;
+    box-shadow: 0px 4px 4px -1px rgba(0, 0, 0, .05);
     right: 0;
     z-index: 100;
     min-width: 120px;
-    padding: rem(4) 0;
     border-radius: 4px;
+
 
 
     .actions {
       padding: rem(8) rem(12);
       font-size: rem(12);
-      color: #fff;
+      color: $lighterBodyColor;
       cursor: pointer;
       border-radius: 2px;
+      border-bottom: 1px solid $borderColor;
 
       &:hover {
         background: lighten($bkgrndColor, 8%);
@@ -345,7 +356,7 @@ button {
   display: none;
 
   .container {
-    @include outer-container(700px);
+    @include outer-container(640px);
   }
 
 
@@ -362,12 +373,16 @@ button {
   }
 
   .header {
-    padding: rem(24) rem(24);
-    border-bottom: 1px solid lighten($bkgrndColor, 5%);
+    padding: rem(24) 0;
+    position: relative;
 
     .contentTitle {
-      opacity: .6;
       margin-bottom: 0;
+    }
+    .dateCreated {
+      color: $lighterBodyColor;
+      font-size: rem(14);
+      margin-top: rem(4);
     }
   }
   .projectContent {
@@ -405,27 +420,27 @@ button {
 
 /* Rich text editor customize CSS */
 
+.CodeMirror {
+  padding: 0;
+}
+
 .CodeMirror-wrap {
-   @include outer-container(700px);
-   margin-top: rem(32);
+   @include outer-container(640px);
    background: $bkgrndColor;
    border: none;
    color: $bodyColor;
-   font-family: 'Spectral', serif;
+   /*font-family: 'Spectral', serif;*/
+   font-family: 'Inconsolata', monospace;
    font-weight: 300;
-   font-size: rem(19);
+   font-size: rem(16);
    line-height: 1.5;
 }
 
    span.CodeMirror-selectedtext {
-    background: lighten($bkgrndColor, 10%);
-    color: #fff;
+     background: none;
    }
 
-   /*.CodeMirror-focused .CodeMirror-selected, .CodeMirror-line::selection, .CodeMirror-line>span::selection, .CodeMirror-line>span>span::selection {
-     background: lighten($bkgrndColor, 10%);
-     color: $bodyColor;
-   }*/
+
 
 
    div.CodeMirror-cursors {
@@ -438,5 +453,5 @@ button {
    /*Spell Check */
    .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
      background: none;
-     border-bottom: 1px dotted rgba(255,0,0,.55);
+     border-bottom: 1px solid rgba(255,0,0,.55);
    }
