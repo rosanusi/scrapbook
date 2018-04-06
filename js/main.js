@@ -1,8 +1,16 @@
 // project Array
 var storedProjectList;
 var mde;
+var mainHeader;
+var startSection;
+var projectsContainer;
+var cardTemplate;
 
 function main() {
+	mainHeader = document.querySelector('.mainHeader');
+	startSection = document.querySelector('.startSection');
+  projectsContainer = document.querySelector('.projectList');
+  cardTemplate = projectsContainer.querySelector('.projectCard');
 
 	mde = new SimpleMDE({
 		element: projectContent,
@@ -85,51 +93,54 @@ function addNewProject() {
 }
 
 function displayProjectList() {
-  const mainHeader = document.querySelector('.mainHeader');
-	const startSection = document.querySelector('.startSection');
-  const projectsContainer = document.querySelector('.projectList');
-  const cardTemplate = projectsContainer.querySelector('.projectCard');
   projectsContainer.classList.remove('hide');
   if (typeof storedProjectList !== 'undefined' && storedProjectList.length > 0) {
 		startSection.classList.add('hide');
 		mainHeader.classList.remove('hide');
     projectsContainer.innerHTML = '';
 
-    storedProjectList.forEach(function(project, i) {
-      const projectCard = cardTemplate.cloneNode(true);
-      projectCard.classList.remove('hide');
-      projectsContainer.appendChild(projectCard);
-      const projectTitle = projectCard.querySelector('.projectTitle');
-      const projectBrief = projectCard.querySelector('.projectBrief');
-      const timeUpdate = projectCard.querySelector('.update');
-
-			// Time Formate for cards
-			const createdTime = moment(project.dateCreated).fromNow();
-
-      projectTitle.innerText = project.projectTitle;
-      projectBrief.innerText = project.projectBrief;
-			timeUpdate.innerText = createdTime;
-
-
-      // trigger "more" for each project
-			const dropdownTrigger = projectCard.querySelector('.dropdown');
-			const dropdownContent = projectCard.querySelector('.dropdown-content');
-      dropdownTrigger.addEventListener("click", evt => openMoreOptions(evt, projectCard, dropdownTrigger, dropdownContent));
-
-
-			// Delete from project list
-			const deleteProjectBtn = projectCard.querySelector('.deleteAction');
-			deleteProjectBtn.addEventListener("click", e => deleteProject(project));
-
-			//Open the project Content
-			projectCard.addEventListener("click", e => openProjectContent(e, project, projectCard, contentContainer));
-
-    });
+    storedProjectList.forEach(renderProjectCard);
   } else {
 		mainHeader.classList.add('hide');
     startSection.classList.remove('hide');
 		projectsContainer.classList.add('hide');
   }
+}
+
+
+function renderProjectCard(project) {
+	const projectCard = cardTemplate.cloneNode(true);
+	projectCard.classList.remove('hide');
+	projectsContainer.appendChild(projectCard);
+	const projectTitle = projectCard.querySelector('.projectTitle');
+	const projectBrief = projectCard.querySelector('.projectBrief');
+	const timeUpdate = projectCard.querySelector('.update');
+
+	// Time Formate for cards
+	const createdTime = moment(project.dateCreated).fromNow();
+
+	projectTitle.innerText = project.projectTitle;
+	projectBrief.innerText = project.projectBrief;
+	timeUpdate.innerText = createdTime;
+
+
+	// trigger "more" for each project
+	const dropdownTrigger = projectCard.querySelector('.dropdown');
+	const dropdownContent = projectCard.querySelector('.dropdown-content');
+	dropdownTrigger.addEventListener("click", evt => openMoreOptions(evt, projectCard, dropdownTrigger, dropdownContent));
+
+
+	// Delete from project list
+	const deleteProjectBtn = projectCard.querySelector('.deleteAction');
+	deleteProjectBtn.addEventListener("click", e => deleteProject(project));
+
+	//Open the project Content
+	projectCard.addEventListener("click", function(e) {
+		if (e.target.closest('.dropdown') != null)
+			return;
+		openProjectContent(project);
+	});
+
 }
 
 function deleteProject(project) {
@@ -159,9 +170,7 @@ function closeMoreOptions(e) {
 
 }
 
-function openProjectContent(e, project, projectsContainer, projectCard, dropdownTrigger) {
-	if (e.target.closest('.dropdown') != null)
-		return;
+function openProjectContent(project) {
 
 	const contentContainer = document.getElementById('contentContainer');
 	const contentTitle = contentContainer.querySelector('.contentTitle');
@@ -172,21 +181,27 @@ function openProjectContent(e, project, projectsContainer, projectCard, dropdown
 	const projectContent = contentContainer.querySelector('.projectContent');
 
 	const saveHandler = e => saveProjectContent(project);
-	mde.codemirror.on("change", saveHandler);
-	//mde.codemirror.off("change", saveHandler);
+
+
+
+	function closeProject() {
+		contentContainer.classList.remove('opened');
+		contentTitle.innerText = "";
+		contentBrief.innerText = "";
+		projectDateCreated.innerText = "";
+		mde.codemirror.off("change", saveHandler);
+		closeProjectBtn.removeEventListener("click", closeProject);
+		mde.value("");
+	}
 
 	contentContainer.classList.add('opened');
-
 	contentTitle.innerText = project.projectTitle;
 	contentBrief.innerText = project.projectBrief;
 	projectDateCreated.innerText = 'created ' + ' ' + createdTime;
+	mde.value(project.projectContent || "");
 
-	if (project.projectContent == undefined)
-		return;
-
-	mde.value(project.projectContent);
-
-	closeProjectBtn.addEventListener("click", e => closeProjectContent(saveHandler));
+	mde.codemirror.on("change", saveHandler);
+	closeProjectBtn.addEventListener("click", closeProject);
 }
 
 function saveProjectContent(project) {
@@ -195,16 +210,6 @@ function saveProjectContent(project) {
 	save();
 }
 
-
-function closeProjectContent(saveHandler) {
-
-	mde.codemirror.off("change", saveHandler);
-	contentContainer.classList.remove('opened');
-
-	//mde.codemirror.on("change", e => saveProjectContent(project));
-
-	console.log('function works');
-}
 
 // Call the form from start page
 const createLink = document.querySelector('.createLink');
