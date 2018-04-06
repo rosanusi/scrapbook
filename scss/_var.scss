@@ -1,8 +1,8 @@
 /* Colours */
-$borderColor: #F6EFE9;
 $headerColor: #6F645D;
 $bodyColor: #6f645D;
 $lighterBodyColor: lighten($bodyColor, 15%);
+$borderColor: lighten($bodyColor, 50%);
 $bkgrndColor: #F6F6F6;
 $successColor: #28A947;
 $errorColor: #ED332D;

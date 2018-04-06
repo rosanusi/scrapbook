@@ -41,8 +41,6 @@ function displayProjectForm(projectsContainer) {
 	const startSection = document.querySelector('.startSection');
   projectForm.classList.remove('hide');
 	startSection.classList.add('hide');
-	// const projectsContainer = document.querySelector('.projectList');
-	// projectsContainer.classList.add('hide');
 }
 
 function hideProjectForm() {
@@ -51,25 +49,38 @@ function hideProjectForm() {
 }
 
 function addNewProject() {
-  event.preventDefault();
+
+	event.preventDefault();
+
+	const formWrap = document.querySelector('.projectForm-inner');
   const titleInput = document.querySelector('.titleInput');
   const briefInput = document.querySelector('.briefInput');
   const createdDate = moment().valueOf();
-  briefInput.innerText = briefInput.value;
 
+	// checkForm input is not empty before saving;
+	const notification = document.querySelector('.notification');
+
+	if (titleInput.value == "" || briefInput.value == "") {
+		notification.classList.remove('hide');
+		console.log(formWrap);
+		console.log(notification);
+
+	} else {
+
+		briefInput.innerText = briefInput.value;
 		storedProjectList.unshift({
 	    projectTitle : titleInput.value,
 	    projectBrief : briefInput.value,
 	    dateCreated: createdDate
 	  });
 
-  save();
-
-  titleInput.value = "";
-  briefInput.value = "";
-
-  hideProjectForm()
-  displayProjectList();
+		save();
+		titleInput.value = "";
+		briefInput.value = "";
+		notification.classList.add('hide');
+	  hideProjectForm()
+	  displayProjectList();
+	}
 
 }
 
@@ -88,8 +99,6 @@ function displayProjectList() {
       const projectCard = cardTemplate.cloneNode(true);
       projectCard.classList.remove('hide');
       projectsContainer.appendChild(projectCard);
-      // const cardTop = projectCard.querySelector('.cardTop');
-      // const cardFoot = projectCard.querySelector('.cardFoot');
       const projectTitle = projectCard.querySelector('.projectTitle');
       const projectBrief = projectCard.querySelector('.projectBrief');
       const timeUpdate = projectCard.querySelector('.update');
@@ -155,16 +164,16 @@ function openProjectContent(e, project, projectsContainer, projectCard, dropdown
 		return;
 
 	const contentContainer = document.getElementById('contentContainer');
-	// projectCard.appendChild(contentContainer);
 	const contentTitle = contentContainer.querySelector('.contentTitle');
 	const contentBrief = contentContainer.querySelector('.contentBrief');
 	const projectDateCreated = contentContainer.querySelector('.dateCreated');
 	const createdTime = moment(project.dateCreated).fromNow();
+	const closeProjectBtn = contentContainer.querySelector('.closeProjectBtn');
 	const projectContent = contentContainer.querySelector('.projectContent');
 
-	// click tester
-	// projectContent.addEventListener("keydown", e => saveProjectContent(project, projectCard, contentContainer));
-	mde.codemirror.on("change", e => saveProjectContent(project));
+	const saveHandler = e => saveProjectContent(project);
+	mde.codemirror.on("change", saveHandler);
+	//mde.codemirror.off("change", saveHandler);
 
 	contentContainer.classList.add('opened');
 
@@ -172,42 +181,30 @@ function openProjectContent(e, project, projectsContainer, projectCard, dropdown
 	contentBrief.innerText = project.projectBrief;
 	projectDateCreated.innerText = 'created ' + ' ' + createdTime;
 
-
 	if (project.projectContent == undefined)
 		return;
 
 	mde.value(project.projectContent);
 
-	// projectContent.innerText = project.projectContent;
-	// console.log(project.projectContent);
-
+	closeProjectBtn.addEventListener("click", e => closeProjectContent(saveHandler));
 }
 
 function saveProjectContent(project) {
-
-	// projectContent.innerText = projectContent.value;
-	//var value = mde.value();
-
+	console.log("editor changed", project);
 	project.projectContent = mde.value();
-
-	// var debounce = null;
-	// clearTimeout(debounce);
-  // debounce = setTimeout(function(){
 	save();
-	console.log(project.projectContent);
-
-		// console.log('shit we are saving bitchesssss')
-  // }, 10000);
-
 }
 
 
-document.addEventListener("DOMContentLoaded", function(){
-  // Handler when the DOM is fully loaded
-	main();
-});
+function closeProjectContent(saveHandler) {
 
+	mde.codemirror.off("change", saveHandler);
+	contentContainer.classList.remove('opened');
 
+	//mde.codemirror.on("change", e => saveProjectContent(project));
+
+	console.log('function works');
+}
 
 // Call the form from start page
 const createLink = document.querySelector('.createLink');
@@ -221,5 +218,9 @@ headerLink.addEventListener("click", e => displayProjectForm());
 const newprojectBtn = document.querySelector('.newprojectBtn');
 newprojectBtn.addEventListener("click", e => addNewProject());
 
-// Clost all dropdowns
+// Close all dropdowns
 document.addEventListener("click", evt => closeMoreOptions(evt));
+
+document.addEventListener("DOMContentLoaded", function(){
+	main();
+});

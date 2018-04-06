@@ -36,6 +36,7 @@
       <div class="projectForm form hide">
         <div class="projectForm-inner">
           <form class="newProjectForm">
+            <span class="notification error hide">You need a title and brief for your project.</span>
             <input type="text" name="projectName" class="titleInput" placeholder="Project Title"/>
             <textarea name="projectBrief" class="briefInput" maxlength="140" placeholder="Write something about your project" rows="5"></textarea>
             <button type="submit" class="btn mainBtn newprojectBtn">Create project</button>
@@ -80,6 +81,7 @@
         <h4 class="contentTitle"></h4>
         <small class="contentBrief hide"></small>
         <small class="dateCreated"></small>
+        <a class="closeProjectBtn">close</a>
       </div>
 
       <textarea class="projectContent container" name="projectContent" id="projectContent"></textarea>

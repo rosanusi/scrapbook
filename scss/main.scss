@@ -146,7 +146,7 @@ form {
       font-weight: 600;
     }
 
-    &:focus, &:hover {
+    &:focus, &:active, &:hover {
       outline: none;
     }
   }
@@ -166,6 +166,17 @@ form {
       outline: none;
     }
   }
+}
+
+.notification {
+  display: block;
+  background-color: lighten($errorColor, 40%);
+  margin-bottom: rem(24);
+  padding: rem(8);
+  font-size: rem(12);
+  color: $errorColor;
+  border-radius: 4px;
+  font-weight: 500;
 }
 
 button {
@@ -384,8 +395,23 @@ button {
       font-size: rem(14);
       margin-top: rem(4);
     }
+
+    .closeProjectBtn {
+      position: absolute;
+      right: 0;
+      padding: rem(8) rem(12);
+      display: inline-block;
+      border: 1px solid $borderColor;
+      top: 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: rem(12);
+      color: $lighterBodyColor;
+    }
+
   }
   .projectContent {
+    position: relative;
     width: 100%;
     display: block;
     min-height: 100vh;
@@ -402,7 +428,6 @@ button {
     &:focus, &:active {
       outline: none;
     }
-
   }
 
 }
