@@ -61,9 +61,9 @@ function addNewProject() {
 	event.preventDefault();
 
 	const formWrap = document.querySelector('.projectForm-inner');
-  const titleInput = document.querySelector('.titleInput');
-  const briefInput = document.querySelector('.briefInput');
-  const createdDate = moment().valueOf();
+  	const titleInput = document.querySelector('.titleInput');
+  	const briefInput = document.querySelector('.briefInput');
+  	const createdDate = moment().valueOf();
 
 	// checkForm input is not empty before saving;
 	const notification = document.querySelector('.notification');
@@ -93,18 +93,18 @@ function addNewProject() {
 }
 
 function displayProjectList() {
-  projectsContainer.classList.remove('hide');
-  if (typeof storedProjectList !== 'undefined' && storedProjectList.length > 0) {
+	projectsContainer.classList.remove('hide');
+	if (typeof storedProjectList !== 'undefined' && storedProjectList.length > 0) {
 		startSection.classList.add('hide');
 		mainHeader.classList.remove('hide');
-    projectsContainer.innerHTML = '';
+	projectsContainer.innerHTML = '';
 
-    storedProjectList.forEach(renderProjectCard);
-  } else {
+	storedProjectList.forEach(renderProjectCard);
+	} else {
 		mainHeader.classList.add('hide');
-    startSection.classList.remove('hide');
+	startSection.classList.remove('hide');
 		projectsContainer.classList.add('hide');
-  }
+	}
 }
 
 

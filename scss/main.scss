@@ -2,7 +2,7 @@
 @import "neat/neat";
 @import "reset";
 @import "var";
-@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Oxygen+Mono');
 
 
 // .container {
@@ -30,7 +30,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     min-height: 100vh;
-    background-color: $bkgrndColor;
+    background-color: #fff;
     color: $bodyColor;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -202,6 +202,12 @@ button {
   &:hover {
     color: darken($linkColor, 10%);
   }
+
+  &.headerLink {
+    line-height: 0;
+    padding: 12px;
+  }
+
 }
 
 
@@ -213,14 +219,12 @@ button {
 
 
 .mainHeader {
-  border-bottom: 1px solid $borderColor;
   padding: rem(24) 0;
 
   .logo {
     border: none;
     line-height: 0;
     display: inline-block;
-    vertical-align: middle;
   }
 
   .right {
@@ -253,14 +257,12 @@ button {
 
 
 .projectList {
-  margin-top: rem(60);
 
   .projectCard {
     @include span-columns(3);
     height: rem(164);
     margin-bottom: rem(13);
-    background-color: lighten($bkgrndColor, 10%);
-    /*border: 1px solid lighten($borderColor, 10%);*/
+    border: 1px solid $borderColor;
     border-radius: 4px;
     position: relative;
     cursor: pointer;
@@ -270,20 +272,25 @@ button {
       margin-right: 0;
     }
 
+    &:hover {
+      border: 1px solid #fff;
+      background-color: lighten($linkColor, 40%);
+    }
+
     .cardTop {
       padding: rem(16);
     }
 
     .projectTitle {
       display: block;
-      font-size: rem(14);
-      font-weight: 600;
-      color: $linkColor;
+      font-size: rem(16);
+      font-weight: 700;
+      color: $bodyColor;
     }
 
     .projectBrief {
       display: block;
-      font-size: rem(14);
+      font-size: rem(12);
       color: $lighterBodyColor;
     }
 
@@ -455,7 +462,7 @@ button {
    border: none;
    color: $bodyColor;
    /*font-family: 'Spectral', serif;*/
-   font-family: 'Inconsolata', monospace;
+   font-family: $editor-font;
    font-weight: 300;
    font-size: rem(16);
    line-height: 1.5;
