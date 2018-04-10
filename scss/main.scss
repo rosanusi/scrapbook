@@ -100,10 +100,6 @@ a {
 
 /* The main Content CSS */
 
-.container {
-	@include outer-container;
-}
-
 .startSection {
   max-width: rem(600);
   display: flex;
@@ -180,10 +176,9 @@ form {
 }
 
 button {
-  font-size: rem(14);
-  padding: rem(8) rem(12);
-  font-weight: 500;
+  padding: none;
   border: none;
+  background-color: none;
   cursor: pointer;
 }
 
@@ -218,8 +213,17 @@ button {
 }*/
 
 
+.pageWrap {
+  display: flex;
+  max-width: rem(1280);
+  width: 100%;
+  margin: 0 auto;
+  margin-top: rem(40);
+
+}
+
 .mainHeader {
-  padding: rem(24) 0;
+  @include span-columns(1);
 
   .logo {
     border: none;
@@ -256,7 +260,9 @@ button {
 }
 
 
-.projectList {
+.mainContent {
+  @include span-columns(11);
+
 
   .projectCard {
     @include span-columns(3);

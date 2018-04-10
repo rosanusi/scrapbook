@@ -15,82 +15,84 @@
   </head>
 
   <body>
-    <header class="mainHeader hide">
-      <div class="container">
-        <a class="logo" href="#"><object type="image/svg+xml" data="img/scrapnote.svg"></object></a>
-        <div class="right">
-          <a class="mainBtn headerLink">
-            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <path d="M14.6666667,6.66666667 L9.33333333,6.66666667 L9.33333333,1.33333333 C9.33333333,0.596953667 8.73637967,0 8,0 C7.26362033,0 6.66666667,0.596953667 6.66666667,1.33333333 L6.66666667,6.66666667 L1.33333333,6.66666667 C0.596953667,6.66666667 0,7.26362033 0,8 C0,8.73637967 0.596953667,9.33333333 1.33333333,9.33333333 L6.66666667,9.33333333 L6.66666667,14.6666667 C6.66666667,15.4030463 7.26362033,16 8,16 C8.73637967,16 9.33333333,15.4030463 9.33333333,14.6666667 L9.33333333,9.33333333 L14.6666667,9.33333333 C15.4030463,9.33333333 16,8.73637967 16,8 C16,7.26362033 15.4030463,6.66666667 14.6666667,6.66666667 Z" id="Shape" fill="#51A0D4" fill-rule="nonzero"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </header>
 
-    <div class="startSection"  id="startSection">
-      <div class="startSection-content">
-        <small>Scrapnote.</small>
-        <h1>Keep notes<br /> for every project.</h1>
-        <a href="#" class="createLink mainBtn">Create a Project</a>
-      </div>
-    </div>
+    <div class="pageWrap">
 
-    <div class="container">
-      <div class="projectForm form hide">
-        <div class="projectForm-inner">
-          <form class="newProjectForm">
-            <span class="notification error hide">You need a title and brief for your project.</span>
-            <input type="text" name="projectName" class="titleInput" placeholder="Project Title"/>
-            <textarea name="projectBrief" class="briefInput" maxlength="140" placeholder="Write something about your project" rows="5"></textarea>
-            <button type="submit" class="btn mainBtn newprojectBtn">Create project</button>
-          </form>
-        </div>
-      </div
-    </div>
+      <header class="mainHeader hide">
 
-    <ul class="container projectList hide">
-      <li class="projectCard hide">
-        <div class="cardTop">
-          <span class="projectTitle">Title of the project</span>
-          <span class="projectBrief">Brief about the project we are working on. Enjoy the show and spin out.</span>
-        </div>
-        <div class="cardFoot">
-          <span class="update">Updated 3 days ago</span>
-          <div class="dropdown">
-            <span class="dropdownIcon">
-              <svg width="13px" height="3px" viewBox="0 0 13 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <g id="Group-Management" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                      <g id="Group-Listing-wih-Dropdwon" transform="translate(-557.000000, -550.000000)" fill="#C9CCD5">
-                          <path d="M558.5,553 C557.671573,553 557,552.328427 557,551.5 C557,550.671573 557.671573,550 558.5,550 C559.328427,550 560,550.671573 560,551.5 C560,552.328427 559.328427,553 558.5,553 Z M563.5,553 C562.671573,553 562,552.328427 562,551.5 C562,550.671573 562.671573,550 563.5,550 C564.328427,550 565,550.671573 565,551.5 C565,552.328427 564.328427,553 563.5,553 Z M568.5,553 C567.671573,553 567,552.328427 567,551.5 C567,550.671573 567.671573,550 568.5,550 C569.328427,550 570,550.671573 570,551.5 C570,552.328427 569.328427,553 568.5,553 Z" id="Combined-Shape"></path>
-                      </g>
-                  </g>
-              </svg>
-            </span>
-            <div class="dropdown-content">
-              <div class="actions editAction">Edit project</div>
-              <div class="actions archiveAction">Archive Project</div>
-              <div class="actions deleteAction">Delete project</div>
-            </div>
+          <div class="right">
+            <button type="button" class="headerLink">
+              <img src="img/addnew.svg" alt="">
+            </button>
           </div>
 
+      </header>
 
+      <div class="startSection"  id="startSection">
+        <div class="startSection-content">
+          <small>Scrapnote.</small>
+          <h1>Keep notes<br /> for every project.</h1>
+          <a href="#" class="createLink mainBtn">Create a Project</a>
         </div>
-      </li>
-    </ul>
-
-    <div id="contentContainer" class="contentContainer">
-
-      <div class="header container">
-        <h4 class="contentTitle"></h4>
-        <small class="contentBrief hide"></small>
-        <small class="dateCreated"></small>
-        <a class="closeProjectBtn">close</a>
       </div>
 
-      <textarea class="projectContent container" name="projectContent" id="projectContent"></textarea>
+      <div class="mainContent">
+        <div class="projectForm form hide">
+          <div class="projectForm-inner">
+            <form class="newProjectForm">
+              <span class="notification error hide">You need a title and brief for your project.</span>
+              <input type="text" name="projectName" class="titleInput" placeholder="Project Title"/>
+              <textarea name="projectBrief" class="briefInput" maxlength="140" placeholder="Write something about your project" rows="5"></textarea>
+              <button type="submit" class="btn mainBtn newprojectBtn">Create project</button>
+            </form>
+          </div>
+        </div
+      </div>
+
+      <ul class="container projectList hide">
+        <li class="projectCard hide">
+          <div class="cardTop">
+            <span class="projectTitle">Title of the project</span>
+            <span class="projectBrief">Brief about the project we are working on. Enjoy the show and spin out.</span>
+          </div>
+          <div class="cardFoot">
+            <span class="update">Updated 3 days ago</span>
+            <div class="dropdown">
+              <span class="dropdownIcon">
+                <svg width="13px" height="3px" viewBox="0 0 13 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Group-Management" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Group-Listing-wih-Dropdwon" transform="translate(-557.000000, -550.000000)" fill="#C9CCD5">
+                            <path d="M558.5,553 C557.671573,553 557,552.328427 557,551.5 C557,550.671573 557.671573,550 558.5,550 C559.328427,550 560,550.671573 560,551.5 C560,552.328427 559.328427,553 558.5,553 Z M563.5,553 C562.671573,553 562,552.328427 562,551.5 C562,550.671573 562.671573,550 563.5,550 C564.328427,550 565,550.671573 565,551.5 C565,552.328427 564.328427,553 563.5,553 Z M568.5,553 C567.671573,553 567,552.328427 567,551.5 C567,550.671573 567.671573,550 568.5,550 C569.328427,550 570,550.671573 570,551.5 C570,552.328427 569.328427,553 568.5,553 Z" id="Combined-Shape"></path>
+                        </g>
+                    </g>
+                </svg>
+              </span>
+              <div class="dropdown-content">
+                <div class="actions editAction">Edit project</div>
+                <div class="actions archiveAction">Archive Project</div>
+                <div class="actions deleteAction">Delete project</div>
+              </div>
+            </div>
+
+
+          </div>
+        </li>
+      </ul>
+
+      <div id="contentContainer" class="contentContainer">
+
+        <div class="header container">
+          <!-- <h4 class="contentTitle"></h4> -->
+          <!-- <small class="contentBrief hide"></small> -->
+          <!-- <small class="dateCreated"></small> -->
+
+          <a class="closeProjectBtn">close</a>
+
+        </div>
+
+        <textarea class="projectContent container" name="projectContent" id="projectContent"></textarea>
+
+      </div>
 
     </div>
 

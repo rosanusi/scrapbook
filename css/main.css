@@ -125,15 +125,6 @@ a {
   color: #9ba6b0; }
 
 /* The main Content CSS */
-.container {
-  max-width: 1162px;
-  margin-left: auto;
-  margin-right: auto; }
-  .container::after {
-    clear: both;
-    content: "";
-    display: block; }
-
 .startSection {
   max-width: 37.5rem;
   display: flex;
@@ -191,10 +182,9 @@ form {
   font-weight: 500; }
 
 button {
-  font-size: 0.875rem;
-  padding: 0.5rem 0.75rem;
-  font-weight: 500;
+  padding: none;
   border: none;
+  background-color: none;
   cursor: pointer; }
 
 .mainBtn {
@@ -218,8 +208,20 @@ button {
   border: 1px solid $linkColor;
   color: #fff;
 }*/
+.pageWrap {
+  display: flex;
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2.5rem; }
+
 .mainHeader {
-  padding: 1.5rem 0; }
+  float: left;
+  display: block;
+  margin-right: 1.1294526499%;
+  width: 7.2980017376%; }
+  .mainHeader:last-child {
+    margin-right: 0; }
   .mainHeader .logo {
     border: none;
     line-height: 0;
@@ -247,46 +249,53 @@ button {
     padding: 1.5rem;
     border-radius: 4px; }
 
-.projectList .projectCard {
+.mainContent {
   float: left;
   display: block;
   margin-right: 1.1294526499%;
-  width: 24.1529105126%;
-  height: 10.25rem;
-  margin-bottom: 0.8125rem;
-  border: 1px solid #f1f2f4;
-  border-radius: 4px;
-  position: relative;
-  cursor: pointer; }
-  .projectList .projectCard:last-child {
+  width: 91.5725456125%; }
+  .mainContent:last-child {
     margin-right: 0; }
-  .projectList .projectCard:nth-child(4n) {
-    margin-right: 0; }
-  .projectList .projectCard:hover {
-    border: 1px solid #fff;
-    background-color: #f5f9fc; }
-  .projectList .projectCard .cardTop {
-    padding: 1rem; }
-  .projectList .projectCard .projectTitle {
+  .mainContent .projectCard {
+    float: left;
     display: block;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #5A6672; }
-  .projectList .projectCard .projectBrief {
-    display: block;
-    font-size: 0.75rem;
-    color: #7f8c9a; }
-  .projectList .projectCard .cardFoot {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    line-height: 1; }
-    .projectList .projectCard .cardFoot .update {
-      display: inline-block;
+    margin-right: 1.1294526499%;
+    width: 24.1529105126%;
+    height: 10.25rem;
+    margin-bottom: 0.8125rem;
+    border: 1px solid #f1f2f4;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer; }
+    .mainContent .projectCard:last-child {
+      margin-right: 0; }
+    .mainContent .projectCard:nth-child(4n) {
+      margin-right: 0; }
+    .mainContent .projectCard:hover {
+      border: 1px solid #fff;
+      background-color: #f5f9fc; }
+    .mainContent .projectCard .cardTop {
+      padding: 1rem; }
+    .mainContent .projectCard .projectTitle {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #5A6672; }
+    .mainContent .projectCard .projectBrief {
+      display: block;
       font-size: 0.75rem;
-      color: #7f8c9a;
-      vertical-align: middle; }
+      color: #7f8c9a; }
+    .mainContent .projectCard .cardFoot {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      line-height: 1; }
+      .mainContent .projectCard .cardFoot .update {
+        display: inline-block;
+        font-size: 0.75rem;
+        color: #7f8c9a;
+        vertical-align: middle; }
 
 .dropdown {
   display: inline-block;

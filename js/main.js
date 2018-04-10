@@ -173,10 +173,6 @@ function closeMoreOptions(e) {
 function openProjectContent(project) {
 
 	const contentContainer = document.getElementById('contentContainer');
-	const contentTitle = contentContainer.querySelector('.contentTitle');
-	const contentBrief = contentContainer.querySelector('.contentBrief');
-	const projectDateCreated = contentContainer.querySelector('.dateCreated');
-	const createdTime = moment(project.dateCreated).fromNow();
 	const closeProjectBtn = contentContainer.querySelector('.closeProjectBtn');
 	const projectContent = contentContainer.querySelector('.projectContent');
 
@@ -186,20 +182,13 @@ function openProjectContent(project) {
 
 	function closeProject() {
 		contentContainer.classList.remove('opened');
-		contentTitle.innerText = "";
-		contentBrief.innerText = "";
-		projectDateCreated.innerText = "";
 		mde.codemirror.off("change", saveHandler);
 		closeProjectBtn.removeEventListener("click", closeProject);
 		mde.value("");
 	}
 
 	contentContainer.classList.add('opened');
-	contentTitle.innerText = project.projectTitle;
-	contentBrief.innerText = project.projectBrief;
-	projectDateCreated.innerText = 'created ' + ' ' + createdTime;
 	mde.value(project.projectContent || "");
-
 	mde.codemirror.on("change", saveHandler);
 	closeProjectBtn.addEventListener("click", closeProject);
 }
