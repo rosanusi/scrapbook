@@ -346,12 +346,13 @@ button {
   .contentContainer.opened {
     display: block;
     position: fixed;
-    width: 100%;
+    width: 40vw;
     height: 100%;
     top: 0;
-    left: 0;
+    right: 0;
     background: #fff;
-    z-index: 1000; }
+    z-index: 1000;
+    border-left: 1px solid #f1f2f4; }
   .contentContainer .header {
     padding: 1.5rem 0;
     position: relative; }

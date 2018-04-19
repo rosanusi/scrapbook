@@ -5,6 +5,12 @@ var mainHeader;
 var startSection;
 var projectsContainer;
 var cardTemplate;
+var activeProject;
+
+function setActiveProject(project) {
+	activeProject = project;
+	openActiveProject();
+}
 
 function main() {
 	mainHeader = document.querySelector('.mainHeader');
@@ -28,6 +34,21 @@ function main() {
 	else {
 		storedProjectList = [];
 	}
+
+	const closeProjectBtn = contentContainer.querySelector('.closeProjectBtn');
+	mde.codemirror.on("change", e => saveActiveProject());
+	closeProjectBtn.addEventListener("click", e => closeActiveProject());
+}
+
+function closeActiveProject(){
+	closeProject(activeProject);
+
+}
+function saveActiveProject() {
+	if(activeProject==null)
+		return;
+	saveProjectContent(activeProject)
+
 }
 
 function save() {
@@ -138,7 +159,7 @@ function renderProjectCard(project) {
 	projectCard.addEventListener("click", function(e) {
 		if (e.target.closest('.dropdown') != null)
 			return;
-		openProjectContent(project);
+		setActiveProject(project);
 	});
 
 }
@@ -170,33 +191,30 @@ function closeMoreOptions(e) {
 
 }
 
-function openProjectContent(project) {
-
+function openActiveProject() {
+	var project = activeProject;
+	if (project==null)
+		return;
 	const contentContainer = document.getElementById('contentContainer');
 	const closeProjectBtn = contentContainer.querySelector('.closeProjectBtn');
 	const projectContent = contentContainer.querySelector('.projectContent');
 
-	const saveHandler = e => saveProjectContent(project);
-
-
-
-	function closeProject() {
-		contentContainer.classList.remove('opened');
-		mde.codemirror.off("change", saveHandler);
-		closeProjectBtn.removeEventListener("click", closeProject);
-		mde.value("");
-	}
-
 	contentContainer.classList.add('opened');
 	mde.value(project.projectContent || "");
-	mde.codemirror.on("change", saveHandler);
-	closeProjectBtn.addEventListener("click", closeProject);
 }
 
 function saveProjectContent(project) {
 	console.log("editor changed", project);
 	project.projectContent = mde.value();
 	save();
+}
+
+function closeActiveProject() {
+	setActiveProject(null);
+	contentContainer.classList.remove('opened');
+	//mde.codemirror.off("change", saveHandler);
+	//closeProjectBtn.removeEventListener("click", closeProject);
+	mde.value("");
 }
 
 
