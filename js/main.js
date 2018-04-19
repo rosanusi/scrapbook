@@ -141,7 +141,7 @@ function renderProjectCard(project) {
 	const createdTime = moment(project.dateCreated).fromNow();
 
 	projectTitle.innerText = project.projectTitle;
-	projectBrief.innerText = project.projectBrief;
+	// projectBrief.innerText = project.projectBrief;
 	timeUpdate.innerText = createdTime;
 
 

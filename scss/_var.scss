@@ -1,9 +1,9 @@
 /* Colours */
 $headerColor: #6F645D;
+$bkgrndColor: hsla(20, 2, 99, 1);
 $bodyColor: #5A6672;
 $lighterBodyColor: lighten($bodyColor, 15%);
-$borderColor: lighten($bodyColor, 55%);
-$bkgrndColor: #fff;
+$borderColor: darken($bkgrndColor, 5%);
 $successColor: #28A947;
 $errorColor: #ED332D;
 $linkColor: #51A0D4;

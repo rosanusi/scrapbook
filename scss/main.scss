@@ -217,13 +217,14 @@ button {
   display: flex;
   max-width: rem(1280);
   width: 100%;
-  margin: 0 auto;
-  margin-top: rem(40);
+  /* margin: 0 auto; */
+  /* margin-top: rem(40); */
 
 }
 
 .mainHeader {
   @include span-columns(1);
+  display: none;
 
   .logo {
     border: none;
@@ -261,37 +262,27 @@ button {
 
 
 .mainContent {
-  @include span-columns(11);
+  width: 30%;
+  min-height: 100vh;
+  padding: 0 rem(24);
+  background-color: $bkgrndColor;
 
 
   .projectCard {
-    @include span-columns(3);
-    height: rem(164);
-    margin-bottom: rem(13);
-    border: 1px solid $borderColor;
-    border-radius: 4px;
     position: relative;
     cursor: pointer;
-
-
-    &:nth-child(4n) {
-      margin-right: 0;
-    }
+    border-bottom: 1px solid  $borderColor;
+    padding: rem(16) 0;
 
     &:hover {
-      border: 1px solid #fff;
-      background-color: lighten($linkColor, 40%);
-    }
 
-    .cardTop {
-      padding: rem(16);
     }
 
     .projectTitle {
       display: block;
-      font-size: rem(16);
-      font-weight: 700;
+      font-size: rem(14);
       color: $bodyColor;
+      line-height: 1.25;
     }
 
     .projectBrief {
@@ -300,19 +291,11 @@ button {
       color: $lighterBodyColor;
     }
 
-    .cardFoot {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: rem(8) rem(16);
-      line-height: 1;
-
-      .update {
-        display: inline-block;
-        font-size: rem(12);
-        color: $lighterBodyColor;
-        vertical-align: middle;
-      }
+    .update {
+      display: inline-block;
+      font-size: rem(12);
+      color: $lighterBodyColor;
+      vertical-align: middle;
     }
   }
 }
@@ -387,14 +370,9 @@ button {
 
   &.opened {
     display: block;
-    position: fixed;
-    width: 40vw;
-    height: 100%;
-    top: 0;
-    right: 0;
-    background: $bkgrndColor;
-    z-index: 1000;
-    border-left: 1px solid $borderColor;
+    position: relative;
+    width: 70%;
+    min-height: 100%;
   }
 
 
