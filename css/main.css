@@ -377,12 +377,9 @@ button {
   max-width: 640px;
   margin-left: auto;
   margin-right: auto;
-  background: #fdfcfc;
   border: none;
   color: #5A6672;
   /*font-family: 'Spectral', serif;*/
-  font-family: "Oxygen Mono", monospace;
-  font-weight: 300;
   font-size: 1rem;
   line-height: 1.5; }
   .CodeMirror-wrap::after {

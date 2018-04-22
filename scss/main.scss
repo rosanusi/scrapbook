@@ -444,12 +444,11 @@ button {
 
 .CodeMirror-wrap {
    @include outer-container(640px);
-   background: $bkgrndColor;
    border: none;
    color: $bodyColor;
    /*font-family: 'Spectral', serif;*/
-   font-family: $editor-font;
-   font-weight: 300;
+  //  font-family: $editor-font;
+  //  font-weight: 300;
    font-size: rem(16);
    line-height: 1.5;
 }
